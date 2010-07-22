@@ -374,8 +374,8 @@ VALUE call_murmur_func
 (unsigned int (*func)(const void*, int, unsigned int), VALUE key, VALUE seed) {
   SafeStringValue(key);
   murmur_hash_check_seed(seed);
-  int key_length = RSTRING(key)->len;
-  char *key_string = RSTRING(key)->ptr;
+  int key_length = RSTRING_LEN(key);
+  char *key_string = RSTRING_PTR(key);
   unsigned int seedling = NUM2UINT(seed);
 
   unsigned int hash_value = func(key_string, key_length, seedling);
@@ -388,8 +388,8 @@ VALUE call_murmur64_func
 (uint64_t (*func)(const void*, int, unsigned int), VALUE key, VALUE seed) {
   SafeStringValue(key);
   murmur_hash_check_seed(seed);
-  int key_length = RSTRING(key)->len;
-  char *key_string = RSTRING(key)->ptr;
+  int key_length = RSTRING_LEN(key);
+  char *key_string = RSTRING_PTR(key);
   unsigned int seedling = NUM2UINT(seed);
 
   uint64_t hash_value = func(key_string, key_length, seedling);
