@@ -86,7 +86,7 @@ unsigned int MurmurHashAligned2 ( const void * key, int len, unsigned int seed )
 
   unsigned int h = seed ^ len;
 
-  int align = (int)data & 3;
+  size_t align = (size_t)data & 3;
 
   if(align && (len >= 4))
     {
@@ -130,7 +130,7 @@ unsigned int MurmurHashAligned2 ( const void * key, int len, unsigned int seed )
 
       d = 0;
 
-      if(len >= align)
+      if((size_t)len >= align)
         {
           switch(align)
             {
